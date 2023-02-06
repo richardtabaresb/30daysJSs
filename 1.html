@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+        .content {
+            display: grid;
+            place-items: center;
+            background: wheat;
+            height: 50%;
+        }
+
+        .letras {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+
+        .letras div {
+            padding: 20px;
+            margin: 10px;
+            transition: 0.5s;
+        }
+
+        .play {
+            background: turquoise;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div>
+            <h1>LETRAS CON SONIDO</h1>
+        </div>
+        <div class="letras">
+            <!-- teclas -->
+            <div data-key="65" class="key">
+                <kbd>A</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="83" class="key">
+                <kbd>S</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="68" class="key">
+                <kbd>D</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="70" class="key">
+                <kbd>F</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="71" class="key">
+                <kbd>G</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="72" class="key">
+                <kbd>H</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="74" class="key">
+                <kbd>J</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="75" class="key">
+                <kbd>K</kbd>
+                <span class="sound"></span>
+            </div>
+            <div data-key="76" class="key">
+                <kbd>L</kbd>
+                <span class="sound"></span>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- audios -->
+    <audio data-key="65" src="JavaScript30/01 - JavaScript Drum Kit/sounds/tink.wav"></audio>
+    <audio data-key="83" src="JavaScript30/01 - JavaScript Drum Kit/sounds/boom.wav"></audio>
+    <audio data-key="68" src="JavaScript30/01 - JavaScript Drum Kit/sounds/clap.wav"></audio>
+    <audio data-key="70" src="JavaScript30/01 - JavaScript Drum Kit/sounds/hihat.wav"></audio>
+    <audio data-key="71" src="JavaScript30/01 - JavaScript Drum Kit/sounds/kick.wav"></audio>
+    <audio data-key="72" src="JavaScript30/01 - JavaScript Drum Kit/sounds/openhat.wav"></audio>
+    <audio data-key="74" src="JavaScript30/01 - JavaScript Drum Kit/sounds/ride.wav"></audio>
+    <audio data-key="75" src="JavaScript30/01 - JavaScript Drum Kit/sounds/snare.wav"></audio>
+    <audio data-key="76" src="JavaScript30/01 - JavaScript Drum Kit/sounds/tom.wav"></audio>
+    <!-- JS -->
+    <script>
+        function playsound(e) {
+            const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+            const key = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            if (!audio) return;
+            audio.currentTime = 0;
+            key.classList.add('play');
+            audio.play();
+        }
+        function removePlay(e) {
+            const keys = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+            keys.classList.remove('play');
+        }
+        window.addEventListener('Key', playsound);
+        window.addEventListener('keyup', removePlay);
+    </script>
+</body>
+
+</html>

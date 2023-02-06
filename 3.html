@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        :root {
+            --color: darkgray;
+            --spacing: 10px;
+            --blur: 10px;
+
+        }
+
+        img {
+            padding: var(--spacing);
+            background: var(--color);
+            filter: blur(var(--blur));
+        }
+
+        h1 {
+            color: var(--base);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background: darkturquoise;
+            color: white;
+            font-family: sans-serif;
+            font-size: 50px;
+            font-weight: 100;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>ACTUALIZAR VARIABLES EN CSS CON JS</h2>
+    <div class="controls">
+        <label for="spacing">Spacing:</label>
+        <input type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+        <label for="blur">Blur:</label>
+        <input type="range" name="blur" min="0" max="25" data-sizing="px">
+
+        <label for="color">Color:</label>
+        <input type="color" name="color" value="#ffc006">
+
+    </div>
+
+    <img src="JavaScript30/03 - CSS Variables/city.jpg">
+
+    <script>
+        const inputs = document.querySelectorAll('.controls input');
+
+        function handleUpdate() {
+            //const pre = this.dataset.sizing || '';
+            let pre = this.type;
+            switch (pre) {
+                case "color":
+                    pre = '';
+                    break;
+                case "range":
+                    pre = 'px';
+                    break;
+            }
+            /* if (pre == "color") {
+                pre = '';
+            } else {
+                pre = "px"
+            } */
+            document.documentElement.style.setProperty(`--${this.name}`, this.value + pre);
+
+
+        }
+        inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+    </script>
+
+</body>
+
+</html>
