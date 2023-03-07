@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>seleccionar varios imputs</title>
+    <style>
+      html {
+        background: darkorange;
+      }
+      .inbox {
+        width: 300px;
+        margin: 50px auto;
+        right: auto;
+        left: auto;
+        box-shadow: 10px 10px rgb(0, 0, 0, 0.1);
+      }
+      .item {
+        display: flex;
+        background: white;
+        align-items: center;
+        border-bottom: 1px solid darkgray;
+      }
+      .item:last-child {
+        border: 0;
+      }
+      p {
+        border-left: 1px solid darkgray;
+        padding: 15px;
+        margin: 0;
+        flex: 1;
+      }
+      input:checked + p {
+        text-decoration: line-through;
+        background-color: azure;
+      }
+      input {
+        margin: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="inbox">
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 1</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 2</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 3</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 4</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 5</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 6</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 7</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 8</p>
+      </div>
+      <div class="item">
+        <input type="checkbox" name="" id="" />
+        <p>option 9</p>
+      </div>
+    </div>
+
+    <script>
+      const checkboxes = document.querySelectorAll('.inbox [type="checkbox"]');
+      let lastCheck;
+
+      function handleCheck(e) {
+        let inBetween = false;
+        if (e.shiftKey && this.checked) {
+          checkboxes.forEach((checkbox) => {
+            console.log(checkbox);
+            if (checkbox === this || checkbox === lastCheck) {
+              inBetween = !inBetween;
+              console.log(inBetween);
+            }
+            if (inBetween) {
+              checkbox.checked = true;
+            }
+          });
+        }
+        lastCheck = this;
+      }
+
+      checkboxes.forEach((checkbox) =>
+        checkbox.addEventListener("click", handleCheck)
+      );
+    </script>
+  </body>
+</html>
